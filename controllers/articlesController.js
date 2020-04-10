@@ -12,3 +12,16 @@ exports.getAllMyArticles = catchAsync(async (req, res) => {
     data: { articles },
   });
 });
+
+exports.createArticle = catchAsync(async (req, res) => {
+  const { _id: owner } = req.user;
+
+  const article = await Article.create({ ...req.body, owner });
+
+  article.owner = undefined;
+
+  res.status(201).send({
+    status: 'success',
+    data: { article },
+  });
+});
