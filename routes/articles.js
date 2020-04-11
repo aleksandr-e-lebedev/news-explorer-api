@@ -8,13 +8,15 @@ const {
   createArticleReqCheck, articleIdReqCheck,
 } = require('../middlewares/articlesPreValidator');
 
+const auth = require('../middlewares/auth');
+
 router
   .route('/')
-  .get(getAllMyArticles)
-  .post(createArticleReqCheck, createArticle);
+  .get(auth, getAllMyArticles)
+  .post(auth, createArticleReqCheck, createArticle);
 
 router
   .route('/:articleId')
-  .delete(articleIdReqCheck, removeMyArticle);
+  .delete(auth, articleIdReqCheck, removeMyArticle);
 
 module.exports = router;
