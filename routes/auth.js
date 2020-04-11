@@ -4,7 +4,11 @@ const {
   createUser, login,
 } = require('../controllers/authController');
 
-router.post('/signup', createUser);
-router.post('/signin', login);
+const {
+  createUserReqCheck, loginReqCheck,
+} = require('../middlewares/authPreValidator');
+
+router.post('/signup', createUserReqCheck, createUser);
+router.post('/signin', loginReqCheck, login);
 
 module.exports = router;
