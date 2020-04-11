@@ -4,6 +4,8 @@ const {
   getMe,
 } = require('../controllers/usersController');
 
-router.get('/me', getMe);
+const auth = require('../middlewares/auth');
+
+router.get('/me', auth, getMe);
 
 module.exports = router;
