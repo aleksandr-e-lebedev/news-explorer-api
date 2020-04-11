@@ -6,6 +6,10 @@ const {
 
 const auth = require('../middlewares/auth');
 
-router.get('/me', auth, getMe);
+const {
+  authHeaderReqCheck,
+} = require('../middlewares/authPreValidator');
+
+router.get('/me', authHeaderReqCheck, auth, getMe);
 
 module.exports = router;
