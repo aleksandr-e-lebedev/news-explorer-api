@@ -54,3 +54,11 @@ exports.loginReqCheck = celebrate({
       .messages(messages.password),
   }).prefs({ stripUnknown: true }),
 });
+
+exports.authHeaderReqCheck = celebrate({
+  [Segments.HEADERS]: Joi.object({
+    authorization: Joi.string()
+      .required()
+      .pattern(/^Bearer /),
+  }).unknown(),
+});
