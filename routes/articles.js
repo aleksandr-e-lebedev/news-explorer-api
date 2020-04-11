@@ -10,13 +10,17 @@ const {
 
 const auth = require('../middlewares/auth');
 
+const {
+  authHeaderReqCheck,
+} = require('../middlewares/authPreValidator');
+
 router
   .route('/')
-  .get(auth, getAllMyArticles)
-  .post(auth, createArticleReqCheck, createArticle);
+  .get(authHeaderReqCheck, auth, getAllMyArticles)
+  .post(authHeaderReqCheck, auth, createArticleReqCheck, createArticle);
 
 router
   .route('/:articleId')
-  .delete(auth, articleIdReqCheck, removeMyArticle);
+  .delete(authHeaderReqCheck, auth, articleIdReqCheck, removeMyArticle);
 
 module.exports = router;
