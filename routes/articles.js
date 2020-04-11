@@ -4,13 +4,17 @@ const {
   getAllMyArticles, createArticle, removeMyArticle,
 } = require('../controllers/articlesController');
 
+const {
+  createArticleReqCheck, articleIdReqCheck,
+} = require('../middlewares/articlesPreValidator');
+
 router
   .route('/')
   .get(getAllMyArticles)
-  .post(createArticle);
+  .post(createArticleReqCheck, createArticle);
 
 router
   .route('/:articleId')
-  .delete(removeMyArticle);
+  .delete(articleIdReqCheck, removeMyArticle);
 
 module.exports = router;
