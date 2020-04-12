@@ -19,4 +19,11 @@ mongoose.connect(config.DB, {
   useUnifiedTopology: true,
 });
 
-app.listen(config.PORT);
+const server = app.listen(config.PORT);
+
+process.on('unhandledRejection', (err) => {
+  logger.errorLogger.error(err);
+  server.close(() => {
+    process.exit(1);
+  });
+});
