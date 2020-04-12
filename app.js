@@ -10,4 +10,6 @@ app.use(express.json());
 app.use(logger.requestLogger);
 app.use(routes);
 
+app.use(logger.errorLogger);
+
 module.exports = app;

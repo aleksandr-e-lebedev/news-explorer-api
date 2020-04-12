@@ -7,3 +7,10 @@ exports.requestLogger = expressWinston.logger({
     new winston.transports.File({ filename: 'request.log' }),
   ],
 });
+
+exports.errorLogger = expressWinston.errorLogger({
+  format: winston.format.json(),
+  transports: [
+    new winston.transports.File({ filename: 'error.log' }),
+  ],
+});
