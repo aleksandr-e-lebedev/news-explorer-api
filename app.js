@@ -10,6 +10,7 @@ const errorHandler = require('./controllers/errorController');
 const app = express();
 
 app.use(cors());
+app.options('*', cors());
 
 app.use(helmet());
 app.use(rateLimiter);
